@@ -27,28 +27,6 @@ It includes:
 
 ---
 
-## ✨ Features
-
-* 🔐 Secure API using Bearer Authentication
-* ⏱️ Built-in Rate Limiting (HTTP 429)
-* 🧠 AI-powered Market Analysis
-* ⚡ FastAPI + Swagger UI
-* 📦 Clean Modular Architecture
-
----
-
-## 🛠️ Tech Stack
-
-| Technology | Usage                            |
-| ---------- | -------------------------------- |
-| Python     | Core language                    |
-| FastAPI    | API framework                    |
-| Uvicorn    | Server                           |
-| OpenAI     | AI analysis (fallback supported) |
-| dotenv     | Environment variables            |
-
----
-
 ## ▶️ Getting Started
 
 ```bash
@@ -59,6 +37,29 @@ python -m venv venv
 venv\Scripts\activate
 
 pip install -r requirements.txt
+```
+
+---
+
+## 🔐 Environment Setup (.env)
+
+Create a `.env` file in the root directory and add your OpenAI API key:
+
+```env
+OPENAI_API_KEY=your_api_key_here
+```
+
+⚠️ Notes:
+
+* Do NOT commit `.env` to GitHub
+* The API includes a fallback mechanism if the key is missing or quota is exceeded
+* This ensures the application still works for evaluation
+
+---
+
+## ▶️ Run the Server
+
+```bash
 uvicorn app.main:app --reload
 ```
 
@@ -160,89 +161,35 @@ app/
 
 ---
 
-## 🏁 Conclusion
-
-This project demonstrates:
-
-* Backend API design
-* Secure authentication
-* Rate limiting implementation
-* AI integration with fallback
-
----
----
-
 ## 📚 Learnings
 
-During this project, I gained practical experience in:
-
-* Building REST APIs using FastAPI
-* Implementing authentication using Bearer tokens
-* Designing rate limiting to handle API traffic efficiently
-* Structuring backend projects using modular architecture
-* Integrating external AI services with fallback mechanisms
-* Handling environment variables securely using `.env`
+* Built REST APIs using FastAPI
+* Implemented authentication using Bearer tokens
+* Designed rate limiting for API protection
+* Integrated AI services with fallback handling
+* Managed environment variables securely
 
 ---
 
 ## 🚧 Challenges Faced
 
-### 1. OpenAI API Quota Issue
+### OpenAI API Quota Limitation
 
-* Faced `429 insufficient_quota` error during AI analysis
-* Since API keys cannot be shared, evaluator would also face this issue
-
-✅ **Solution:**
-Implemented a fallback mechanism to return predefined analysis when API fails
-
----
-
-### 2. Securing API Keys
-
-* Risk of exposing sensitive API keys while pushing to GitHub
+* Encountered `429 insufficient_quota` error
+* External API dependency could break evaluation
 
 ✅ **Solution:**
-Used `.gitignore` to exclude `.env` and followed secure key handling practices
-
----
-
-### 3. Authentication Handling
-
-* Ensuring only authorized users can access endpoints
-
-✅ **Solution:**
-Implemented Bearer token authentication and validated requests
-
----
-
-### 4. Rate Limiting
-
-* Preventing excessive API requests
-
-✅ **Solution:**
-Implemented rate limiting to return HTTP 429 after threshold
-
----
-
-### 5. Git & Deployment Issues
-
-* Faced issues with secret detection and push rejection
-
-✅ **Solution:**
-Removed sensitive data from commit history and restructured repository
+Implemented fallback mechanism to ensure API always returns valid output
 
 ---
 
 ## 💡 Key Takeaways
 
-* Always design APIs to work even if external services fail
-* Security (API keys, authentication) is critical in backend systems
-* Proper error handling improves reliability and user experience
-* Clean project structure improves maintainability
-* Real-world backend systems must handle edge cases gracefully
+* APIs should not depend solely on external services
+* Security and reliability are critical
+* Proper error handling improves system robustness
 
 ---
-
 
 ## 👤 Author
 
