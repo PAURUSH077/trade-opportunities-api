@@ -170,6 +170,79 @@ This project demonstrates:
 * AI integration with fallback
 
 ---
+---
+
+## 📚 Learnings
+
+During this project, I gained practical experience in:
+
+* Building REST APIs using FastAPI
+* Implementing authentication using Bearer tokens
+* Designing rate limiting to handle API traffic efficiently
+* Structuring backend projects using modular architecture
+* Integrating external AI services with fallback mechanisms
+* Handling environment variables securely using `.env`
+
+---
+
+## 🚧 Challenges Faced
+
+### 1. OpenAI API Quota Issue
+
+* Faced `429 insufficient_quota` error during AI analysis
+* Since API keys cannot be shared, evaluator would also face this issue
+
+✅ **Solution:**
+Implemented a fallback mechanism to return predefined analysis when API fails
+
+---
+
+### 2. Securing API Keys
+
+* Risk of exposing sensitive API keys while pushing to GitHub
+
+✅ **Solution:**
+Used `.gitignore` to exclude `.env` and followed secure key handling practices
+
+---
+
+### 3. Authentication Handling
+
+* Ensuring only authorized users can access endpoints
+
+✅ **Solution:**
+Implemented Bearer token authentication and validated requests
+
+---
+
+### 4. Rate Limiting
+
+* Preventing excessive API requests
+
+✅ **Solution:**
+Implemented rate limiting to return HTTP 429 after threshold
+
+---
+
+### 5. Git & Deployment Issues
+
+* Faced issues with secret detection and push rejection
+
+✅ **Solution:**
+Removed sensitive data from commit history and restructured repository
+
+---
+
+## 💡 Key Takeaways
+
+* Always design APIs to work even if external services fail
+* Security (API keys, authentication) is critical in backend systems
+* Proper error handling improves reliability and user experience
+* Clean project structure improves maintainability
+* Real-world backend systems must handle edge cases gracefully
+
+---
+
 
 ## 👤 Author
 
