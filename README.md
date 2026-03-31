@@ -43,10 +43,10 @@ pip install -r requirements.txt
 
 ## 🔐 Environment Setup (.env)
 
-Create a `.env` file in the root directory and add your OpenAI API key:
+Create a `.env` file in the root directory and add your Gemini API key:
 
 ```env
-OPENAI_API_KEY=your_api_key_here
+GEMINI_API_KEY=your_api_key_here
 ```
 
 ⚠️ Notes:
@@ -137,7 +137,7 @@ AI-generated insights for trading opportunities...
 
 ## 🧠 AI Integration
 
-* Uses OpenAI for generating insights
+* Uses Gemini for generating insights
 * Includes fallback mechanism if quota is exceeded
 * Ensures uninterrupted API response
 
@@ -173,7 +173,7 @@ app/
 
 ## 🚧 Challenges Faced
 
-### OpenAI API Quota Limitation
+### Gemini API Quota Limitation
 
 * Encountered `429 insufficient_quota` error
 * External API dependency could break evaluation
