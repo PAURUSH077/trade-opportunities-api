@@ -1,50 +1,33 @@
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
+from google import genai
 
 load_dotenv()
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Initialize Gemini client
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 async def analyze_data(sector, data):
     try:
         prompt = f"""
-        Analyze the Indian {sector} sector.
+Analyze the Indian {sector} sector.
 
-        Provide:
-        - Market Trends
-        - Key Opportunities
-        - Risks
-        - Trade Ideas
+Provide:
+- Market Trends
+- Key Opportunities
+- Risks
+- Trade Ideas
 
-        Data:
-        {data}
-        """
+Data:
+{data}
+"""
 
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=prompt
         )
 
-        return response.choices[0].message.content
+        return response.text
 
-    except Exception:
-        # ✅ Clean fallback (NO error exposed)
-        return f"""
-Market Trends:
-The {sector} sector in India is showing stable growth driven by digital adoption and innovation.
-
-Key Opportunities:
-- Expansion in cloud and AI services
-- Growth in fintech and SaaS platforms
-
-Risks:
-- Market volatility
-- Regulatory changes
-
-Trade Ideas:
-- Focus on fundamentally strong tech companies
-- Consider long-term investments in large-cap stocks
-"""
+    except Exception as e:
+        return f"Error analyzing data: {str(e)}"
